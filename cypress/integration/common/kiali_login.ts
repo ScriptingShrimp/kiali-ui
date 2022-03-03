@@ -1,6 +1,6 @@
 import { Given, When, And, Then } from "cypress-cucumber-preprocessor/steps";
 
-const KUBEADMIN_USERNAME = 'kubeadmin';
+const KUBEADMIN_USERNAME = 'jenkins';
 const KUBEADMIN_IDP = 'my_htpasswd_provider';
 
 Given('user opens base url', () => {
