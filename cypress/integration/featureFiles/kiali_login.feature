@@ -1,6 +1,6 @@
 Feature: Kiali login
 
-  I want to login to Kiali and see landing page
+  User wants to login to Kiali and see landing page
   
   Scenario: Open Kaili home page
     Given user opens base url
