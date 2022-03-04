@@ -1,13 +1,14 @@
 import { Given, When, And, Then } from "cypress-cucumber-preprocessor/steps";
 
-const KUBEADMIN_USERNAME = 'jenkins';
+const USERNAME = 'jenkins';
+const PASSWD = Cypress.env('passwd')
 const KUBEADMIN_IDP = 'my_htpasswd_provider';
 
 Given('user opens base url', () => {
     cy.visit('/'); // visits baseUrl which is set in plugins/index.js
     cy.window().then((win: any) => {
-        if (win.SERVER_FLAGS?.authDisabled) {
-            cy.log(win.SERVER_FLAGS?.authDisabled + 'skipping login, console is running with auth disabled');
+        if (win = true) {
+            cy.log(win.localStorage + 'skipping login, console is running with auth disabled');
             return;
         }
 
@@ -18,7 +19,7 @@ Given('user opens base url', () => {
 
 And('user clicks Log In With OpenShift', () => {
     const idp = KUBEADMIN_IDP;
-    cy.log(`  Logging in as ${KUBEADMIN_USERNAME}`);
+    cy.log(`  Logging in as ${USERNAME}`);
     cy.get('button[type="submit"]').should('be.visible');
     cy.get('button[type="submit"]').click();
 });
@@ -34,8 +35,8 @@ And('user clicks my_htpasswd_provider', () => {
 })
 
 And('user fill in username and password', () => {
-    cy.get('#inputUsername').type('' || KUBEADMIN_USERNAME);
-    cy.get('#inputPassword').type('' || Cypress.env('BRIDGE_KUBEADMIN_PASSWORD'));
+    cy.get('#inputUsername').type('' || USERNAME);
+    cy.get('#inputPassword').type('' || PASSWD);
 
     cy.get('button[type="submit"]').click()
 
